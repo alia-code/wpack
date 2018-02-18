@@ -16,7 +16,9 @@ const extractSass = new ExtractTextWebpackPlugin({
 });
 const config = {
     entry: {
-        main: './src/index.ts',
+        style: './src/style.scss',
+        admin: './src/admin.scss',
+        main: './src/main.ts',
         async: './src/async.ts',
     },
     output: {
@@ -27,7 +29,7 @@ const config = {
         hotUpdateMainFilename: 'hot/hot-update.json'
     },
     resolve: {
-        extensions: ['.ts', '.js'],
+        extensions: ['.ts', '.js', '.scss'],
     },
     plugins: [
         new CleanWebpackPlugin([process.env.themeDirectory], {allowExternal: true}),
@@ -134,9 +136,15 @@ const config = {
                     }],
             },
             {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                test: /\.(woff|woff2|eot|ttf|otf|ico)$/,
                 use: [
-                    'file-loader'
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[path][name].[ext]',
+                            context: './src'
+                        }
+                    }
                 ]
             },
             {
