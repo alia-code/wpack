@@ -21,6 +21,14 @@ function underscores_body_classes( $classes ) {
 }
 add_filter( 'body_class', 'underscores_body_classes' );
 
+
+function admin_css() {
+    wp_register_style( 'admin-stylesheet', get_template_directory_uri() . '/admin.css' );
+    wp_enqueue_style( 'admin-stylesheet' );
+}
+
+add_action( 'admin_enqueue_scripts', 'admin_css' );
+
 /**
  * Add a pingback url auto-discovery header for singularly identifiable articles.
  */

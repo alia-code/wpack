@@ -3,6 +3,7 @@ if (module && module.hot) {
 }
 
 import moment from 'moment';
+import './admin.scss';
 import './main.scss';
 
 window.document.getElementsByTagName('main')[0]
